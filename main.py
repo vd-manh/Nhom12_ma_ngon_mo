@@ -30,8 +30,11 @@ face_coordinates = trained_face_data.detectMultiScale(
 
 tracker(face_coordinates)  # Calling the tracker function on face coordinates
 
-cv2.imshow('Face Detector',
-           img)  # Displays the image in a program called face detector with rectangles on the detected faces
+width, height = 800, 600  # Kích thước mà bạn muốn
+img = cv2.resize(img, (width, height))
+
+cv2.imshow('Face Detector', img) # Hiển thị ảnh với kích thước đã điều chỉnh
 cv2.waitKey()
+
 
 print("Code Completed!")
