@@ -5,7 +5,7 @@ def draw_face_rectangles(image, face_coordinates):
     for (x, y, w, h) in face_coordinates:
         # Generate a random RGB color for the rectangle
         color = (random.randint(0, 255), random.randint(0, 255), random.randint(0, 255))
-        cv.rectangle(image, (x, y), (x + w, y + h), color, 3)
+        cv2.rectangle(image, (x, y), (x + w, y + h), color, 3)
 #NHAN DIEN KHUON MAT TU VID
 # Tạo đối tượng VideoCapture để lấy video từ webcam (hoặc camera mạng)
 cap = cv2.VideoCapture(0)  # Số 0 thường tương ứng với webcam máy tính
@@ -29,9 +29,8 @@ while True:
     cv2.imshow('Face Detection', frame)
 
     # Thoát vòng lặp khi nhấn phím bất kì
-    key = cv2.waitKey(1)
-    if key != -1:
-        running = False
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
 
 # Giải phóng tài nguyên và đóng cửa sổ video
 cap.release()
@@ -54,6 +53,6 @@ img = cv2.resize(img, (width, height))
 
 cv2.imshow('Face and Eye Detector', img)
 cv2.waitKey()
-cv.destroyAllWindows()
+cv2.destroyAllWindows()
 
 print("Code Completed!")
