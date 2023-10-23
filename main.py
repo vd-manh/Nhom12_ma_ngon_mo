@@ -28,9 +28,10 @@ while True:
     # Hiển thị video với các khuôn mặt đã xác định
     cv2.imshow('Face Detection', frame)
 
-    # Thoát vòng lặp khi nhấn phím "q"
-    if cv2.waitKey(1) & 0xFF == ord('q'):
-        break
+    # Thoát vòng lặp khi nhấn phím bất kì
+    key = cv2.waitKey(1)
+    if key != -1:
+        running = False
 
 # Giải phóng tài nguyên và đóng cửa sổ video
 cap.release()
