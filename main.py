@@ -26,5 +26,6 @@ img = cv2.resize(img, (width, height))
 
 cv2.imshow('Face and Eye Detector', img)
 cv2.waitKey()
+cv.destroyAllWindow()
 
 print("Code Completed!")
