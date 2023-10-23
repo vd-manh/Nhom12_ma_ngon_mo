@@ -9,6 +9,10 @@ def draw_face_rectangles(image, face_coordinates):
 
 trained_face_and_eye_data = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_alt2.xml')  # Sử dụng tệp phân loại kết hợp
 img = cv2.imread('anh.jpg')
+if img is None :
+    print("Không tìm thấy file ảnh")
+
+
 grayscale = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
 
 face_and_eye_coordinates = trained_face_and_eye_data.detectMultiScale(grayscale)  # Sử dụng tệp phân loại kết hợp
