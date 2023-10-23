@@ -9,6 +9,8 @@ def tracker(face_coordinates):
         r = random.randint(0, 255)
         [x, y, w, h] = face_coordinates[track]
         cv2.rectangle(img, (x, y), (x + w, y + h), (b, g, r), 3)
+        cv2.putText(img, f'Face {track + 1}', (x, y - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 2)
+        #track += 1
         track += 1
 
 trained_face_and_eye_data = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_alt2.xml')  # Sử dụng tệp phân loại kết hợp
@@ -19,7 +21,7 @@ face_and_eye_coordinates = trained_face_and_eye_data.detectMultiScale(grayscale)
 
 tracker(face_and_eye_coordinates)
 
-width, height = 1000, 800
+width, height = 2000, 1600
 img = cv2.resize(img, (width, height))
 
 cv2.imshow('Face and Eye Detector', img)
