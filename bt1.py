@@ -31,7 +31,7 @@ def apply_effect(effect_type):
             output = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
         elif effect_type == "invert_colors":
             output = cv2.bitwise_not(img)
-        # Thêm hiệu ứng mới ở đây
+            # Them hieu ung moi
         cv2.imshow('Filtered Image', output)
         selected_filter = effect_type
 
@@ -47,4 +47,3 @@ output = cv2.filter2D(img, -5, kernel_3x3)
 cv2.imshow('3x3 filter', output)
 output = cv2.filter2D(img, -1, kernel_5x5)
 cv2.imshow('5x5 filter', output)
-cv2.waitKey(0)
