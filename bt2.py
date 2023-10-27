@@ -24,7 +24,17 @@ def apply_filter(filter_type):
         output = cv2.filter2D(img, -1, kernel)
         cv2.imshow('Filtered Image', output)
         selected_filter = filter_type
+selected_filters = []
 
+def apply_filters():
+    global img
+    if img is not None:
+        output = img.copy()
+        for filter_name in selected_filters:
+            kernel = filters.get(filter_name)
+            if kernel is not None:
+                output = cv2.filter2D(output, -1, kernel)
+        cv2.imshow('Filtered Image', output)
 def apply_effect(effect_type):
     global img, selected_filter
     if img is not None:
@@ -52,8 +62,36 @@ def open_image():
             cv2.imshow('Original', img)
     root.after(1, update)
 
+def toggle_filter(filter_name):
+    if filter_name in selected_filters:
+        selected_filters.remove(filter_name)
+    else:
+        selected_filters.append(filter_name)
+
 def update():
     key = cv2.waitKey(1)
     if key == 27:
         cv2.destroyAllWindows()
     root.after(1, update)
+root = tk.Tk()
+root.title("Image Filters")
+
+cv2.namedWindow('Original')
+cv2.namedWindow('Filtered Image')
+open_button = tk.Button(root, text="Open Image", command=open_image)
+open_button.pack()
+
+sharpen_1_button = tk.Button(root, text="Sharpen 1", command=lambda: toggle_filter("sharpen_1"))
+sharpen_1_button.pack()
+
+sharpen_2_button = tk.Button(root, text="Sharpen 2", command=lambda: toggle_filter("sharpen_2"))
+sharpen_2_button.pack()
+
+sharpen_3_button = tk.Button(root, text="Sharpen 3", command=lambda: toggle_filter("sharpen_3"))
+sharpen_3_button.pack()
+
+apply_filters_button = tk.Button(root, text="Apply Filters", command=apply_filters)
+apply_filters_button.pack()
+
+
+root.mainloop()
